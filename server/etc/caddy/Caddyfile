@@ -1,0 +1,64 @@
+# Global options
+{
+    http_port 80
+    # Disable automatic HTTPS
+    auto_https off
+    # Debugging
+    debug
+    # Global options
+    log {
+        output file /var/log/caddy/access.log {
+            roll_size 10MB
+            roll_keep 10
+            roll_keep_for 720h
+        }
+        format json
+        level DEBUG
+    }
+}
+
+# Redirect apex domain to www
+dspacecity.com:80 {
+    redir https://www.dspacecity.com{uri}
+}
+
+api.dspacecity.com:80 {
+    log {
+        output file /var/log/caddy/api.dspacecity.com-access.log
+        format json
+        level DEBUG
+    }
+
+    header {
+        # Allow CORS from www.dspacecity.com
+        Access-Control-Allow-Origin "https://www.dspacecity.com"
+        Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS, PATCH"
+        Access-Control-Allow-Headers "Content-Type, Authorization"
+    }
+
+    handle_errors {
+        respond "Service Unavailable" 503
+    }
+
+    # Reverse proxy all requests to localhost:8080
+    reverse_proxy /* http://localhost:8080 {
+        header_up Host {http.request.host}
+        header_up X-Real-IP {remote}
+        header_up X-Forwarded-For {remote}
+        header_up X-Forwarded-Proto {scheme}
+    }
+}
+
+www.dspacecity.com:80 {
+    log {
+        output file /var/log/caddy/www.dspacecity.com-access.log
+    }
+
+    handle_errors {
+        respond "Service Unavailable" 503
+    }
+
+    # Serve static files
+    root * /opt/caddyfiles/dspacecity
+    file_server
+}
