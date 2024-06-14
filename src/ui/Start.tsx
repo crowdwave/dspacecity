@@ -1,15 +1,31 @@
-import {ListMetaDataItem, SelectedItem} from "../listnavigator/types";
+import {ListData, ListIdentifier, ListMetaDataItem, SelectedItem} from "../listnavigator/listNavigatorTypes";
 import React from "react";
 import {VerticalNavigator} from "../listnavigator/VerticalNavigator";
-import makeListForCommunities from "../data/makeCommunitiesList";
 import makeCommunitiesList from "../data/makeCommunitiesList";
 import makeCollectionsList from "../data/makeCollectionsList";
+import {setListItemCount} from "../listnavigator/ListItemCount";
 
 
-const onRowSelectCallback = async (selectedRow: SelectedItem) => {
+const onListDisplayedCallback = async (selectedList: ListData) => {
+    switch (selectedList.listIdentifier) {
+        case 'rootlist':
+            setListItemCount(null);
+            break;
+        case 'communities':
+            setListItemCount(selectedList.listMetaDataItem.length);
+            break;
+        case 'collections':
+            setListItemCount(selectedList.listMetaDataItem.length);
+            break;
+        default:
+            break;
+    }
+}
+
+const onRowSelectCallback = async (selectedRow: SelectedItem, selectedList: ListData) => {
     console.log('selectedRow: ', selectedRow)
+
     // do something with the selected row
-    // ts-ignore
     console.log(Object.keys(selectedRow.listMetaDataItem))
 }
 
@@ -42,24 +58,36 @@ const getListForCollections = async (): Promise<ListMetaDataItem[]> => {
 };
 
 
-const onGetNextListCallback = async (selectedRow: SelectedItem | null): Promise<ListMetaDataItem[]> => {
+const onGetNextListCallback = async (selectedRow: SelectedItem | null): Promise<[ListMetaDataItem[], ListIdentifier]> => {
     try {
         console.log('selectedRow: ', selectedRow)
         // null means startup/initialise so we pass in the root list
-        if (selectedRow === null) return getListForRoot();
-        // user selected communities from the root list
-        if (selectedRow.listMetaDataItem.id === 'communities') return await getListForCommunities();
-        if (selectedRow.listMetaDataItem.id === 'collections') return await getListForCollections();
+        if (selectedRow === null) {
+            const listIdentifier: ListIdentifier = 'rootlist'
+            return [getListForRoot(), listIdentifier]
+        }
+        if (selectedRow.listMetaDataItem.id === 'communities') {
+            const communities = await getListForCommunities()
+            const listIdentifier: ListIdentifier = 'communities'
+            return [communities, listIdentifier]
+        }
+        if (selectedRow.listMetaDataItem.id === 'collections') {
+            const collections = await getListForCollections()
+            const listIdentifier: ListIdentifier = 'collections'
+            return [collections, listIdentifier]
+        }
         // maybe selected row should be including information about which list it belongs to
     } catch (e) {
         alert('error getting next list')
     }
-    return []
+    // Return a default ListIdentifier value when there's an error or the selected row is not 'communities' or 'collections'
+    return [[], 'default']
 }
 
 export const Start = () => {
     return (
         <VerticalNavigator
+            onListDisplayedCallback={onListDisplayedCallback}
             onRowSelectCallback={onRowSelectCallback}
             onGetNextListCallback={onGetNextListCallback}
         />

@@ -18,7 +18,13 @@ export interface SelectedItem {
 export interface ListData {
     color: string;
     index: number;
+    listIdentifier: ListIdentifier;
     listMetaDataItem: ListMetaDataItem[];
     selectedListItemMetaData: ListMetaDataItem | null;
 }
 
+export interface ListItemCountEvent extends CustomEvent {
+    detail: number | null;
+}
+
+export type ListIdentifier = string;

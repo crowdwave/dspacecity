@@ -4,27 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7bf7135e-475e-481e-a187-391ff22ab468" name="Changes" comment="Refinement of overall model for a generic data browser.">
-      <change afterPath="$PROJECT_DIR$/src/ui/App.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/ContentPanelArea.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/ListItemCount.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/Sidebar.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/StickyHeader.tsx" afterDir="false" />
+    <list default="true" id="7bf7135e-475e-481e-a187-391ff22ab468" name="Changes" comment="Added communities.&#10;Added a header in the sidebar and an item count for lists.&#10;Reorganised file structure of application.">
+      <change afterPath="$PROJECT_DIR$/src/listnavigator/ListItemCount.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/etc/caddy/Caddyfile" beforeDir="false" afterPath="$PROJECT_DIR$/server/etc/caddy/Caddyfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Start.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Start.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dataFetcher.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/dataFetcher.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/getAuthorsList.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/getCollectionsList.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/getCommunityDetails.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/getRootList.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/makeCollectionsList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/makeCollectionsList.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/makeCommunitiesList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/makeCommunitiesList.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/listnavigator/ListComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/ListComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/listnavigator/ListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/ListItem.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/listnavigator/VerticalNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/VerticalNavigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listnavigator/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/makeCommunitiesList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/makeCommunitiesList.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/listnavigator/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/listNavigatorTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/ListItemCount.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/SidebarStickyHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/SidebarStickyHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Start.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Start.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,16 +59,16 @@
       <recent name="$PROJECT_DIR$/server/opt/apiproxy" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/listnavigator" />
       <recent name="$PROJECT_DIR$/src/ui" />
       <recent name="$PROJECT_DIR$/src/data" />
-      <recent name="$PROJECT_DIR$/src/listnavigator" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/listnavigator/ListItemCount.tsx" />
+      <recent name="$PROJECT_DIR$/src/listnavigator/listNavigatorTypes.ts" />
       <recent name="$PROJECT_DIR$/src/ContentPanelArea.tsx" />
       <recent name="$PROJECT_DIR$/src/Sidebar.tsx" />
       <recent name="$PROJECT_DIR$/src/StickyHeader.tsx" />
-      <recent name="$PROJECT_DIR$/src/ListItemCount.tsx" />
-      <recent name="$PROJECT_DIR$/src/listnavigator/VerticalNavigator.tsx" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -100,7 +92,7 @@
       <workItem from="1718255053491" duration="810000" />
       <workItem from="1718255877574" duration="181000" />
       <workItem from="1718256196255" duration="71000" />
-      <workItem from="1718256381365" duration="21454000" />
+      <workItem from="1718256381365" duration="28542000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <option name="closed" value="true" />
@@ -118,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718328608612</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added communities.&#10;Added a header in the sidebar and an item count for lists.&#10;Reorganised file structure of application.">
+      <option name="closed" value="true" />
+      <created>1718335400035</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718335400035</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -127,6 +127,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit." />
     <MESSAGE value="Refinement of overall model for a generic data browser." />
-    <option name="LAST_COMMIT_MESSAGE" value="Refinement of overall model for a generic data browser." />
+    <MESSAGE value="Added communities.&#10;Added a header in the sidebar and an item count for lists.&#10;Reorganised file structure of application." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added communities.&#10;Added a header in the sidebar and an item count for lists.&#10;Reorganised file structure of application." />
   </component>
 </project>

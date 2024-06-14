@@ -1,5 +1,5 @@
 import React from "react";
-import {ListItemCount} from "./ListItemCount";
+import {ListItemCount} from "../listnavigator/ListItemCount";
 
 export const SidebarStickyHeader: React.FC = () => (
     <>
@@ -18,7 +18,6 @@ export const SidebarStickyHeader: React.FC = () => (
             `}
         </style>
         <div className="sidebar-header">
-            Header
             <ListItemCount/>
         </div>
     </>

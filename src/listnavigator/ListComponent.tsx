@@ -1,5 +1,5 @@
 import React from "react";
-import {ListData, ListMetaDataItem} from "./types";
+import {ListData, ListMetaDataItem} from "./listNavigatorTypes";
 import {ListItem} from "./ListItem";
 
 export interface ListComponentProps {

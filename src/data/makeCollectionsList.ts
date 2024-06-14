@@ -1,5 +1,5 @@
 import { DSPACE_BASE_URL, fetchWithCache } from "./dataFetcher";
-import { ListMetaDataItem } from "../listnavigator/types";
+import { ListMetaDataItem } from "../listnavigator/listNavigatorTypes";
 
 interface Link {
   href: string;

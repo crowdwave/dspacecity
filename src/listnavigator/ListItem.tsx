@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ListItemProps, SelectedItem} from "./types";
+import {ListItemProps, SelectedItem} from "./listNavigatorTypes";
 
 export const ListItem: React.FC<ListItemProps> = ({listIndex, listMetaDataItem, color}) => {
     const [getAnimate, setAnimate] = useState(false);
