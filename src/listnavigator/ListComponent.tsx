@@ -1,7 +1,11 @@
 import React from "react";
-import {ListComponentProps, ListMetaDataItem} from "./types";
+import {ListData, ListMetaDataItem} from "./types";
 import {ListItem} from "./ListItem";
 
+export interface ListComponentProps {
+    listData: ListData;
+    isLastList: boolean;
+}
 export const ListComponent: React.FC<ListComponentProps> = ({listData, isLastList}) => {
 
     return (

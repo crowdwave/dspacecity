@@ -1,5 +1,5 @@
 import { DSPACE_BASE_URL, fetchWithCache } from "./dataFetcher";
-import { ListMetaDataItem } from "./listnavigator/types";
+import { ListMetaDataItem } from "../listnavigator/types";
 
 // Define interfaces for metadata and links
 interface Metadata {
@@ -100,8 +100,10 @@ const makeCommunitiesList = async (): Promise<ListMetaDataItem[]> => {
     let resultPages: Community[] = [];
     let loading = true;
 
+    const size = 1000;
+
     try {
-        let url = `${DSPACE_BASE_URL}/core/communities?size=1000`;
+        let url = `${DSPACE_BASE_URL}/core/communities?size=${size}`;
         let hasNext = true;
 
         // Iterates through all the pages of the communities
@@ -138,9 +140,6 @@ const makeCommunitiesList = async (): Promise<ListMetaDataItem[]> => {
         name: community.name,
         rowData: community,
     }));
-
-    console.log('result');
-    console.log(result);
 
     return result;
 };

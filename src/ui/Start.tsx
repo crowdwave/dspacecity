@@ -1,8 +1,9 @@
-import {ListMetaDataItem, SelectedItem} from "./listnavigator/types";
+import {ListMetaDataItem, SelectedItem} from "../listnavigator/types";
 import React from "react";
-import {VerticalNavigator} from "./listnavigator/VerticalNavigator";
-import makeListForCommunities from "./makeCommunitiesList";
-import makeCommunitiesList from "./makeCommunitiesList";
+import {VerticalNavigator} from "../listnavigator/VerticalNavigator";
+import makeListForCommunities from "../data/makeCommunitiesList";
+import makeCommunitiesList from "../data/makeCommunitiesList";
+import makeCollectionsList from "../data/makeCollectionsList";
 
 
 const onRowSelectCallback = async (selectedRow: SelectedItem) => {
@@ -26,11 +27,16 @@ const getListForCommunities = async (): Promise<ListMetaDataItem[]> => {
     try {
         return await makeCommunitiesList();
     } catch (error: unknown) {
-        if (error instanceof Error) {
-            console.error("Error fetching communities:", error.message);
-        } else {
-            console.error("Unknown error fetching communities");
-        }
+        console.error("Error fetching communities:", error);
+        return []
+    }
+};
+
+const getListForCollections = async (): Promise<ListMetaDataItem[]> => {
+    try {
+        return await makeCollectionsList();
+    } catch (error: unknown) {
+        console.error("Error fetching collections:", error);
         return []
     }
 };
@@ -42,7 +48,8 @@ const onGetNextListCallback = async (selectedRow: SelectedItem | null): Promise<
         // null means startup/initialise so we pass in the root list
         if (selectedRow === null) return getListForRoot();
         // user selected communities from the root list
-        if (selectedRow.listMetaDataItem.id === 'communities') return getListForCommunities();
+        if (selectedRow.listMetaDataItem.id === 'communities') return await getListForCommunities();
+        if (selectedRow.listMetaDataItem.id === 'collections') return await getListForCollections();
         // maybe selected row should be including information about which list it belongs to
     } catch (e) {
         alert('error getting next list')

@@ -141,7 +141,6 @@ export const VerticalNavigator: React.FC<VerticalNavigatorProps> = (
                 }
             `}
             </style>
-
             <div
                 id="verticalnavigator"
                 className="verticalnavigatorcontainer">

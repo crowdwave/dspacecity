@@ -22,7 +22,3 @@ export interface ListData {
     selectedListItemMetaData: ListMetaDataItem | null;
 }
 
-export interface ListComponentProps {
-    listData: ListData;
-    isLastList: boolean;
-}
