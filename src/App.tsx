@@ -29,7 +29,7 @@ export const App: React.FC = () => {
             <style>
                 {/* language=CSS */ `
                     body {
-                        font-family: 'Roboto', sans-serif;
+                        font-family: 'Montserrat', sans-serif;
                         margin: 0;
                         padding: 0;
                     }

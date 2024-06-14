@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { ListItemProps, SelectedItem } from "./types";
+import React, {useEffect, useState} from "react";
+import {ListItemProps, SelectedItem} from "./types";
 
-export const ListItem: React.FC<ListItemProps> = ({ listIndex, listMetaDataItem, color }) => {
+export const ListItem: React.FC<ListItemProps> = ({listIndex, listMetaDataItem, color}) => {
     const [getAnimate, setAnimate] = useState(false);
     const [isRotating, setIsRotating] = useState(false);
 
@@ -31,7 +31,7 @@ export const ListItem: React.FC<ListItemProps> = ({ listIndex, listMetaDataItem,
             listMetaDataItem,
             listIndex,
         };
-        const event: CustomEvent<SelectedItem> = new CustomEvent('LIST_ITEM_SELECTED', { detail: selectedItem } as CustomEventInit<SelectedItem>);
+        const event: CustomEvent<SelectedItem> = new CustomEvent('LIST_ITEM_SELECTED', {detail: selectedItem} as CustomEventInit<SelectedItem>);
         document.dispatchEvent(event);
     };
 
@@ -67,9 +67,9 @@ export const ListItem: React.FC<ListItemProps> = ({ listIndex, listMetaDataItem,
                     cursor: pointer;
                     border-radius: 8px;
                     color: white;
-                    font-variant: small-caps;
-                    font-weight: bold;
-                    font-size: 1.2em;
+                    /*font-variant: small-caps;*/
+                    font-weight: 400;
+                    font-size: .9em;
                     display: flex;
                     align-items: center;
                     background-color: var(--bg-color, #7ec853);
@@ -108,7 +108,7 @@ export const ListItem: React.FC<ListItemProps> = ({ listIndex, listMetaDataItem,
             <li
                 key={listMetaDataItem.id}
                 className={`list-group-item ${getAnimate ? 'fade-enter-active' : ''}`}
-                style={{ '--bg-color': color } as React.CSSProperties}
+                style={{'--bg-color': color} as React.CSSProperties}
                 onClick={(e) => {
                     e.stopPropagation();
                     handleOnClick();
@@ -116,7 +116,9 @@ export const ListItem: React.FC<ListItemProps> = ({ listIndex, listMetaDataItem,
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                <span className={isRotating ? 'rotate' : ''} onAnimationEnd={() => setIsRotating(false)}>
+                <span
+                    className={isRotating ? 'rotate' : ''}
+                    onAnimationEnd={() => setIsRotating(false)}>
                     {truncateText(listMetaDataItem.name, 80)}
                 </span>
             </li>

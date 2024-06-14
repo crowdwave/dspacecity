@@ -50,6 +50,9 @@ export const VerticalNavigator: React.FC<VerticalNavigatorProps> = (
                 if (event.detail?.listMetaDataItem === undefined) return;
                 // Check if the new selected item is different from the current one
                 const selectedItem: SelectedItem = event.detail;
+                console.log('selectedItem')
+                console.log(selectedItem)
+
                 const indexOfSelectedList = selectedItem.listIndex;
                 // when a row is selected, store that information in the list
                 setLists((prevLists: ListData[]) => {

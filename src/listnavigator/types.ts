@@ -1,6 +1,7 @@
 export interface ListMetaDataItem {
     id: string;
     name: string;
+    rowData?: unknown;
 }
 
 export interface ListItemProps {
