@@ -93,7 +93,7 @@ const makeCollectionsList = async (): Promise<ListMetaDataItem[]> => {
   let resultPages: Collection[] = [];
   let loading = true;
 
-  const size = 1000;
+  const size = 100;
 
   try {
     let url = `${DSPACE_BASE_URL}/core/collections?size=${size}`;

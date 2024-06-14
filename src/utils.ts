@@ -15,4 +15,4 @@ const colorPalettes = {
     candy: ['#FF69B4', '#FFB6C1', '#FFC0CB', '#FF6347', '#FFD700', '#FF4500', '#FF8C00', '#FFA07A']
 };
 
-export const colorPalette = colorPalettes.vibrant;
+export const colorPalette = colorPalettes.pastel;
