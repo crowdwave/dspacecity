@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7bf7135e-475e-481e-a187-391ff22ab468" name="Changes" comment="Update the proxy.">
-      <change afterPath="$PROJECT_DIR$/src/colorPalettes.ts" afterDir="false" />
+    <list default="true" id="7bf7135e-475e-481e-a187-391ff22ab468" name="Changes" comment="Tightened up creation of ListData.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/opt/apiproxy/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/opt/apiproxy/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/makeCollectionsList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/makeCollectionsList.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/makeCommunitiesList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/makeCommunitiesList.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listnavigator/ListComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/ListComponent.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listnavigator/ListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/ListItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listnavigator/VerticalNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/VerticalNavigator.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/listnavigator/listNavigatorTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/listNavigatorTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Sidebar.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/Start.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Start.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,16 +50,16 @@
       <recent name="$PROJECT_DIR$/server/opt/apiproxy" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/data" />
       <recent name="$PROJECT_DIR$/src/listnavigator" />
       <recent name="$PROJECT_DIR$/src/ui" />
-      <recent name="$PROJECT_DIR$/src/data" />
     </key>
     <key name="es6.move.members.recent.items">
+      <recent name="$PROJECT_DIR$/src/ui/OnGetNextListCallback.tsx" />
+      <recent name="$PROJECT_DIR$/src/ui/GetListForRoot.tsx" />
+      <recent name="$PROJECT_DIR$/src/ui/OnRowSelectCallback.tsx" />
+      <recent name="$PROJECT_DIR$/src/ui/OnListDisplayedCallback.tsx" />
       <recent name="$PROJECT_DIR$/src/listnavigator/listNavigatorTypes.ts" />
-      <recent name="$PROJECT_DIR$/src/colorPalettes.ts" />
-      <recent name="$PROJECT_DIR$/src/listnavigator/ListItemCount.tsx" />
-      <recent name="$PROJECT_DIR$/src/ContentPanelArea.tsx" />
-      <recent name="$PROJECT_DIR$/src/Sidebar.tsx" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -92,7 +84,7 @@
       <workItem from="1718255877574" duration="181000" />
       <workItem from="1718256196255" duration="71000" />
       <workItem from="1718256381365" duration="47475000" />
-      <workItem from="1718436750072" duration="8835000" />
+      <workItem from="1718436750072" duration="11111000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <option name="closed" value="true" />
@@ -134,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718409169232</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Tightened up creation of ListData.">
+      <option name="closed" value="true" />
+      <created>1718575043303</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718575043303</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +146,7 @@
     <MESSAGE value="Added communities.&#10;Added a header in the sidebar and an item count for lists.&#10;Reorganised file structure of application." />
     <MESSAGE value="Added an event callback for when a list comes to the foreground.&#10;Added a counter to show the number of items in the current list." />
     <MESSAGE value="Update the proxy." />
-    <option name="LAST_COMMIT_MESSAGE" value="Update the proxy." />
+    <MESSAGE value="Tightened up creation of ListData." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tightened up creation of ListData." />
   </component>
 </project>

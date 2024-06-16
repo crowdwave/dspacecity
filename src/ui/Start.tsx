@@ -1,66 +1,10 @@
-import {ListData, ListIdentifier, ListMetaDataItem, SelectedItem} from "../listnavigator/listNavigatorTypes";
+import {ListMetaDataItem} from "../listnavigator/listNavigatorTypes";
 import React from "react";
 import {VerticalNavigator} from "../listnavigator/VerticalNavigator";
-import makeCommunitiesList from "../data/makeCommunitiesList";
-import makeCollectionsList from "../data/makeCollectionsList";
-import {setListItemCount} from "../listnavigator/ListItemCount";
-import {makeList} from "../data/makeList";
-import {colorPalettes} from "../colorPalettes";
+import {onListDisplayedCallback} from "../data/OnListDisplayedCallback";
+import {onRowSelectCallback} from "../data/OnRowSelectCallback";
+import {onGetNextListCallback} from "../data/OnGetNextListCallback";
 
-
-const onListDisplayedCallback = async (selectedList: ListData) => {
-    switch (selectedList.listIdentifier) {
-        case 'rootlist':
-            setListItemCount(null);
-            break;
-        case 'communities':
-            setListItemCount(selectedList.listMetaDataItem.length);
-            break;
-        case 'collections':
-            setListItemCount(selectedList.listMetaDataItem.length);
-            break;
-        default:
-            break;
-    }
-}
-
-const onRowSelectCallback = async (selectedRow: SelectedItem, selectedList: ListData) => {
-    console.log('selectedRow: ', selectedRow)
-
-    // do something with the selected row
-    console.log(Object.keys(selectedRow.listMetaDataItem))
-}
-
-const getListForRoot = (): ListData => {
-    //return selectedRow.listMetaDataItem.id === 'root'
-    const listMetaDataItems: ListMetaDataItem[] = [
-        {id: 'communities', name: 'Communities'},
-        {id: 'collections', name: 'Collections'},
-        {id: 'items', name: 'Items'},
-        {id: 'authors', name: 'Authors'},
-    ]
-    return makeList(listMetaDataItems, 'rootlist', colorPalettes['ocean'])
-}
-
-const onGetNextListCallback = async (selectedRow: SelectedItem | null): Promise<ListData | null> => {
-    try {
-        console.log('selectedRow: ', selectedRow)
-        // null means startup/initialise so we pass in the root list
-        if (selectedRow === null) {
-            return getListForRoot()
-        }
-        if (selectedRow.listMetaDataItem.id === 'communities') {
-            return await makeCommunitiesList()
-        }
-        if (selectedRow.listMetaDataItem.id === 'collections') {
-            return await makeCollectionsList()
-        }
-        // maybe selected row should be including information about which list it belongs to
-    } catch (e) {
-        alert('error getting next list')
-    }
-    return null
-}
 
 export const Start = () => {
     return (

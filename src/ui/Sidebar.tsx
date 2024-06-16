@@ -14,9 +14,9 @@ export const Sidebar: React.FC<{ sidebarWidth: string; handleMouseDown: (e: Reac
                 }
 
                 .resizable-handle {
-                    width: 10px;
+                    width: 14px;
                     cursor: ew-resize;
-                    background-color: rgba(0, 0, 0, 0.1);
+                    background-color: #007bff;
                     position: absolute;
                     right: 0;
                     top: 0;
