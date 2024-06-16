@@ -1,5 +1,7 @@
-import { DSPACE_BASE_URL, fetchWithCache } from "./dataFetcher";
-import { ListMetaDataItem } from "../listnavigator/listNavigatorTypes";
+import {DSPACE_BASE_URL, fetchWithCache} from "./dataFetcher";
+import {ListData, ListMetaDataItem} from "../listnavigator/listNavigatorTypes";
+import {makeList} from "./makeList";
+import {colorPalettes} from "../colorPalettes";
 
 // Define interfaces for metadata and links
 interface Metadata {
@@ -96,7 +98,7 @@ const validateCommunity = (community: any): boolean => {
 };
 
 // Main function to fetch and validate communities
-const makeCommunitiesList = async (): Promise<ListMetaDataItem[]> => {
+const makeCommunitiesList = async (): Promise<ListData> => {
     let resultPages: Community[] = [];
     let loading = true;
 
@@ -135,13 +137,14 @@ const makeCommunitiesList = async (): Promise<ListMetaDataItem[]> => {
         loading = false;
     }
 
-    const result: ListMetaDataItem[] = resultPages.map((community: Community): ListMetaDataItem => ({
+    const listMetaDataItems: ListMetaDataItem[] = resultPages.map((community: Community): ListMetaDataItem => ({
         id: community.id,
         name: community.name,
         rowData: community,
     }));
 
-    return result;
+    return makeList(listMetaDataItems, 'communities', colorPalettes.vibrant);
+
 };
 
 export default makeCommunitiesList;

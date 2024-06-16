@@ -1,8 +1,6 @@
-//export const colorPalette = ['#4285F4', '#34A853', '#FBBC05', '#EA4335', '#F4B400', '#0F9D58', '#DB4437'];
+import {ColorPalette} from "./listnavigator/listNavigatorTypes";
 
-
-
-const colorPalettes = {
+export const colorPalettes: { [key: string]: ColorPalette } = {
     vibrant: ['#FF6F61', '#6B5B95', '#88B04B', '#F7CAC9', '#92A8D1', '#955251', '#B565A7', '#009B77'],
     pastel: ['#FFB3BA', '#FFDFBA', '#FFFFBA', '#BAFFC9', '#BAE1FF', '#A2C4C9', '#D5A6BD', '#C9DAEA'],
     earthTones: ['#8D6E63', '#D7CCC8', '#A1887F', '#FFAB91', '#FFCCBC', '#FF7043', '#BF360C', '#3E2723'],
@@ -15,4 +13,8 @@ const colorPalettes = {
     candy: ['#FF69B4', '#FFB6C1', '#FFC0CB', '#FF6347', '#FFD700', '#FF4500', '#FF8C00', '#FFA07A']
 };
 
-export const colorPalette = colorPalettes.pastel;
+// this accepts any index number integer and returns a color from the palette, wrapping to start if necessary
+export function getColorAtIndex(index: number, palette: ColorPalette): string {
+    const adjustedIndex = index % palette.length;
+    return palette[adjustedIndex];
+}

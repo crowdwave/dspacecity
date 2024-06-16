@@ -223,18 +223,33 @@ async def proxy_request(request):
             data=(await request.body() if request.method in ['POST', 'PUT'] else None)
         )
         response = await client.send(req)
+        print('response.text')
+        print(response.text)
+        print(request.method)
+        print(target_url)
+        print(response.headers)
+
         etag = response.headers.get('ETag', 'headernotpresent')
         last_modified = response.headers.get('Last-Modified', 'headernotpresent')
+
         cache_filename = url_to_filename(target_url, etag, last_modified)
         response_content = response.content
+        print('response_content')
+        print(response_content)
+        print('response.status_code')
+        print(response.status_code)
+
+
         if request.method != 'HEAD':
             async with aiofiles.open(cache_filename, 'wb') as cache_file:
                 await cache_file.write(response_content)
+
         cors_headers = {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
             'Access-Control-Allow-Headers': '*',
         }
+
         headers = dict(response.headers)
         headers.update(cors_headers)
 

@@ -1,5 +1,7 @@
 import { DSPACE_BASE_URL, fetchWithCache } from "./dataFetcher";
-import { ListMetaDataItem } from "../listnavigator/listNavigatorTypes";
+import {ListData, ListMetaDataItem} from "../listnavigator/listNavigatorTypes";
+import {makeList} from "./makeList";
+import {colorPalettes} from "../colorPalettes";
 
 interface Link {
   href: string;
@@ -89,7 +91,7 @@ const validateCollection = (collection: any): boolean => {
 };
 
 // Main function to fetch and validate collections
-const makeCollectionsList = async (): Promise<ListMetaDataItem[]> => {
+const makeCollectionsList = async (): Promise<ListData> => {
   let resultPages: Collection[] = [];
   let loading = true;
 
@@ -128,13 +130,13 @@ const makeCollectionsList = async (): Promise<ListMetaDataItem[]> => {
     loading = false;
   }
 
-  const result: ListMetaDataItem[] = resultPages.map((collection: Collection): ListMetaDataItem => ({
+  const listMetaDataItems: ListMetaDataItem[] = resultPages.map((collection: Collection): ListMetaDataItem => ({
     id: collection.id,
     name: collection.name,
     rowData: collection,
   }));
 
-  return result;
+  return makeList(listMetaDataItems, 'collections', colorPalettes.vibrant);
 };
 
 export default makeCollectionsList;

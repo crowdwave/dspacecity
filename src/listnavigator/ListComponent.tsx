@@ -1,11 +1,14 @@
 import React from "react";
 import {ListData, ListMetaDataItem} from "./listNavigatorTypes";
 import {ListItem} from "./ListItem";
+import {getColorAtIndex} from "../colorPalettes";
 
 export interface ListComponentProps {
     listData: ListData;
     isLastList: boolean;
 }
+
+
 export const ListComponent: React.FC<ListComponentProps> = ({listData, isLastList}) => {
 
     return (
@@ -23,19 +26,17 @@ export const ListComponent: React.FC<ListComponentProps> = ({listData, isLastLis
             <ul className="list-group">
                 {isLastList
                     ? listData.listMetaDataItem.map((listMetaDataItem: ListMetaDataItem) => (
-                        <ListItem
-                            listIndex={listData.index}
+                        listData.index !== null && <ListItem
+                            listData={listData}
                             key={listMetaDataItem.id}
                             listMetaDataItem={listMetaDataItem}
-                            color={listData.color}
                         />
                     ))
-                    : listData.selectedListItemMetaData !== null && (
+                    : listData.index !== null && listData.selectedListItemMetaData !== null && (
                     <ListItem
-                        listIndex={listData.index}
+                        listData={listData}
                         key={listData.selectedListItemMetaData.id}
                         listMetaDataItem={listData.selectedListItemMetaData}
-                        color={listData.color}
                     />
                 )}
             </ul>

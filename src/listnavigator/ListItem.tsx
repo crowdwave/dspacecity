@@ -1,7 +1,16 @@
 import React, {useEffect, useState} from "react";
-import {ListItemProps, SelectedItem} from "./listNavigatorTypes";
+import {ListData, ListMetaDataItem, SelectedItem} from "./listNavigatorTypes";
+import {getColorAtIndex} from "../colorPalettes";
 
-export const ListItem: React.FC<ListItemProps> = ({listIndex, listMetaDataItem, color}) => {
+interface ListItemProps {
+    listData: ListData;
+    listMetaDataItem: ListMetaDataItem;
+}
+
+export const ListItem: React.FC<ListItemProps> = ({
+                                                      listData,
+                                                      listMetaDataItem,
+                                                  }) => {
     const [getAnimate, setAnimate] = useState(false);
     const [isRotating, setIsRotating] = useState(false);
 
@@ -28,8 +37,8 @@ export const ListItem: React.FC<ListItemProps> = ({listIndex, listMetaDataItem, 
 
     const handleOnClick = () => {
         const selectedItem: SelectedItem = {
-            listMetaDataItem,
-            listIndex,
+            listMetaDataItem: listMetaDataItem,
+            listIndex: listData.index,
         };
         const event: CustomEvent<SelectedItem> = new CustomEvent('LIST_ITEM_SELECTED', {detail: selectedItem} as CustomEventInit<SelectedItem>);
         document.dispatchEvent(event);
@@ -45,13 +54,16 @@ export const ListItem: React.FC<ListItemProps> = ({listIndex, listMetaDataItem, 
     }, []);
 
     const handleMouseEnter = () => {
-        setIsRotating(true);
+        setIsRotating((prev) => !prev);
     };
 
     const handleMouseLeave = () => {
+        return
         // Reset rotation state without triggering animation
         setIsRotating(false);
     };
+
+    const listBackgroundColor = getColorAtIndex(listData.index, listData.colorPalette)
 
     return (
         <>
@@ -108,7 +120,7 @@ export const ListItem: React.FC<ListItemProps> = ({listIndex, listMetaDataItem, 
             <li
                 key={listMetaDataItem.id}
                 className={`list-group-item ${getAnimate ? 'fade-enter-active' : ''}`}
-                style={{'--bg-color': color} as React.CSSProperties}
+                style={{'--bg-color': listBackgroundColor} as React.CSSProperties}
                 onClick={(e) => {
                     e.stopPropagation();
                     handleOnClick();

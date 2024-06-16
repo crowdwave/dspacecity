@@ -4,6 +4,8 @@ import {VerticalNavigator} from "../listnavigator/VerticalNavigator";
 import makeCommunitiesList from "../data/makeCommunitiesList";
 import makeCollectionsList from "../data/makeCollectionsList";
 import {setListItemCount} from "../listnavigator/ListItemCount";
+import {makeList} from "../data/makeList";
+import {colorPalettes} from "../colorPalettes";
 
 
 const onListDisplayedCallback = async (selectedList: ListData) => {
@@ -29,59 +31,35 @@ const onRowSelectCallback = async (selectedRow: SelectedItem, selectedList: List
     console.log(Object.keys(selectedRow.listMetaDataItem))
 }
 
-const getListForRoot = (): ListMetaDataItem[] => {
+const getListForRoot = (): ListData => {
     //return selectedRow.listMetaDataItem.id === 'root'
-    return [
+    const listMetaDataItems: ListMetaDataItem[] = [
         {id: 'communities', name: 'Communities'},
         {id: 'collections', name: 'Collections'},
         {id: 'items', name: 'Items'},
         {id: 'authors', name: 'Authors'},
     ]
+    return makeList(listMetaDataItems, 'rootlist', colorPalettes['ocean'])
 }
 
-const getListForCommunities = async (): Promise<ListMetaDataItem[]> => {
-    try {
-        return await makeCommunitiesList();
-    } catch (error: unknown) {
-        console.error("Error fetching communities:", error);
-        return []
-    }
-};
-
-const getListForCollections = async (): Promise<ListMetaDataItem[]> => {
-    try {
-        return await makeCollectionsList();
-    } catch (error: unknown) {
-        console.error("Error fetching collections:", error);
-        return []
-    }
-};
-
-
-const onGetNextListCallback = async (selectedRow: SelectedItem | null): Promise<[ListMetaDataItem[], ListIdentifier]> => {
+const onGetNextListCallback = async (selectedRow: SelectedItem | null): Promise<ListData | null> => {
     try {
         console.log('selectedRow: ', selectedRow)
         // null means startup/initialise so we pass in the root list
         if (selectedRow === null) {
-            const listIdentifier: ListIdentifier = 'rootlist'
-            return [getListForRoot(), listIdentifier]
+            return getListForRoot()
         }
         if (selectedRow.listMetaDataItem.id === 'communities') {
-            const communities = await getListForCommunities()
-            const listIdentifier: ListIdentifier = 'communities'
-            return [communities, listIdentifier]
+            return await makeCommunitiesList()
         }
         if (selectedRow.listMetaDataItem.id === 'collections') {
-            const collections = await getListForCollections()
-            const listIdentifier: ListIdentifier = 'collections'
-            return [collections, listIdentifier]
+            return await makeCollectionsList()
         }
         // maybe selected row should be including information about which list it belongs to
     } catch (e) {
         alert('error getting next list')
     }
-    // Return a default ListIdentifier value when there's an error or the selected row is not 'communities' or 'collections'
-    return [[], 'default']
+    return null
 }
 
 export const Start = () => {

@@ -1,13 +1,11 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {ListData, ListIdentifier, ListMetaDataItem, SelectedItem} from "./listNavigatorTypes";
-import {colorPalette} from "../utils";
+import {ListData,  SelectedItem} from "./listNavigatorTypes";
 import {ListComponent} from "./ListComponent";
-
 
 export interface VerticalNavigatorProps {
     onListDisplayedCallback: (selectedList: ListData) => Promise<void>;
     onRowSelectCallback: (selectedRow: SelectedItem, selectedList: ListData) => Promise<void>;
-    onGetNextListCallback: (selectedRow: SelectedItem | null) => Promise<[ListMetaDataItem[], ListIdentifier]>;
+    onGetNextListCallback: (selectedRow: SelectedItem | null) => Promise<ListData | null>;
 }
 
 export const VerticalNavigator: React.FC<VerticalNavigatorProps> = (
@@ -19,37 +17,12 @@ export const VerticalNavigator: React.FC<VerticalNavigatorProps> = (
 ) => {
     const [getLists, setLists] = useState<ListData[]>([]);
     const prevListCount = useRef<number>(getLists.length);
+    const isFetching = useRef<boolean>(false);  // Track whether a fetch is in progress
 
-
-    // this is the top level component.
-    // it starts with an initial list of items
-    // it listens for the APPEND_NEW_LIST event and appends a new list to the list of lists
-    // when the user selects an item, it is up to that item to run code that will append a new list, or not
-    // the selected item is stored in the state and passed to the next list
-    // when a new list is appended, the current list is collapsed and the new list is shown expanded
-    // the new list is shown with a fade-in effect
-    // the list items are truncated to 30 characters
-    // when a user selects an item, if it is not the final list, and all others removed
-    // the final list is shown expanded
-    // lists prior to the final list show only their selected item
-
-    const makeList = (listMetaDataItems: ListMetaDataItem[], listIdentifier: ListIdentifier) => {
-        const index = getLists.length;
-        const color = colorPalette[index % colorPalette.length];
-        const newList: ListData = {
-            index: index,
-            listMetaDataItem: listMetaDataItems,
-            listIdentifier: listIdentifier,
-            selectedListItemMetaData: null,
-            color: color,
-        };
-        return newList;
-    }
-
-    const appendNewList = useCallback((listMetaDataItems: ListMetaDataItem[], listIdentifier: ListIdentifier) => {
-        const newList: ListData = makeList(listMetaDataItems, listIdentifier)
-        setLists((prev) => [...prev, newList]);
-    }, []);
+    const appendNewList = useCallback((listData: ListData) => {
+        listData.index = getLists.length;
+        setLists((prev) => [...prev, listData]);
+    }, [getLists]);
 
     useEffect(() => {
         // Check if the number of lists has changed
@@ -87,14 +60,19 @@ export const VerticalNavigator: React.FC<VerticalNavigatorProps> = (
                 if (selectedRowIsInFinalList) {
                     // user clicked on the final list
                     // there may or may not be another list to display, null means no next list
-                    const [listMetaDataItems, listIdentifier]: [ListMetaDataItem[], ListIdentifier] = await onGetNextListCallback(selectedItem)
-                    if (listMetaDataItems !== null) appendNewList(listMetaDataItems, listIdentifier);
+                    if (!isFetching.current) {  // Check if a fetch is already in progress
+                        isFetching.current = true;
+                        const listData = await onGetNextListCallback(selectedItem)
+                        if (listData !== null) appendNewList(listData);
+                        isFetching.current = false;  // Reset the flag after the fetch is complete
+                    }
                 } else {
                     // user clicked on a list that is not the final list, remove all lists after the selected one
                     setLists((prevLists: ListData[]) => prevLists.slice(0, indexOfSelectedList + 1));
                 }
                 await onRowSelectCallback(selectedItem, selectedList);
             } catch (error) {
+                isFetching.current = false;  // Reset the flag in case of an error
                 alert('error handling user selection of row')
                 console.log(error)
             }
@@ -107,39 +85,32 @@ export const VerticalNavigator: React.FC<VerticalNavigatorProps> = (
 
         document.addEventListener('LIST_ITEM_SELECTED', handler);
         return () => document.removeEventListener('LIST_ITEM_SELECTED', handler);
-    }, [getLists]);
-
-
-    /*useEffect(() => {
-        const handler = (event: CustomEvent<ListMetaDataItem[]>) => {
-            if (event.detail === null) return;
-            const listMetaDataItems: ListMetaDataItem[] = event.detail;
-            appendNewList(listMetaDataItems);
-        };
-        document.addEventListener('APPEND_NEW_LIST', handler as EventListener);
-        return () => document.removeEventListener('APPEND_NEW_LIST', handler as EventListener);
-    }, [getLists, appendNewList]);*/
+    }, [getLists, onGetNextListCallback, onRowSelectCallback, appendNewList]);
 
     useEffect(() => {
         // Define the async function
         const fetchListMetaDataItems = async () => {
-            try {
-                // on startup/init we ask for the next list, passing null
-                const [listMetaDataItems, listIdentifier]: [ListMetaDataItem[], ListIdentifier] = await onGetNextListCallback(null)
-                if (listMetaDataItems.length > 0) appendNewList(listMetaDataItems, listIdentifier);
-            } catch (error) {
-                alert('error getting next list')
+            if (!isFetching.current) {  // Check if a fetch is already in progress
+                isFetching.current = true;
+                try {
+                    // on startup/init we ask for the next list, passing null
+                    const listData = await onGetNextListCallback(null)
+                    if (listData !== null) appendNewList(listData);
+                } catch (error) {
+                    alert('error getting next list')
+                } finally {
+                    isFetching.current = false;
+                }
             }
         };
 
         // Call the async function
         fetchListMetaDataItems();
-    }, [onGetNextListCallback, appendNewList]);
+    }, []);
 
     return (
         <>
             <style> {/* language=CSS */ `
-
                 .verticalnavigatorcontainer {
                     padding: 10px;
                 }
@@ -176,4 +147,3 @@ export const VerticalNavigator: React.FC<VerticalNavigatorProps> = (
         </>
     );
 };
-

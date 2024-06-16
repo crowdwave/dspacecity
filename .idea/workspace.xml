@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7bf7135e-475e-481e-a187-391ff22ab468" name="Changes" comment="Added an event callback for when a list comes to the foreground.&#10;Added a counter to show the number of items in the current list.">
+    <list default="true" id="7bf7135e-475e-481e-a187-391ff22ab468" name="Changes" comment="Update the proxy.">
+      <change afterPath="$PROJECT_DIR$/src/colorPalettes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/opt/apiproxy/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/opt/apiproxy/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/makeCollectionsList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/makeCollectionsList.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/makeCommunitiesList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/makeCommunitiesList.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/listnavigator/ListComponent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/ListComponent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/listnavigator/ListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/ListItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/listnavigator/VerticalNavigator.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/VerticalNavigator.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/listnavigator/listNavigatorTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/listNavigatorTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Start.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Start.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils.ts" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,25 +33,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/Users/andrewstuart/devel/dspacecity/src",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "ts.external.directory.path": "/Users/andrewstuart/devel/dspacecity/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/andrewstuart/devel/dspacecity/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/andrewstuart/devel/dspacecity/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JSON"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JSON&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
@@ -57,11 +63,11 @@
       <recent name="$PROJECT_DIR$/src/data" />
     </key>
     <key name="es6.move.members.recent.items">
-      <recent name="$PROJECT_DIR$/src/listnavigator/ListItemCount.tsx" />
       <recent name="$PROJECT_DIR$/src/listnavigator/listNavigatorTypes.ts" />
+      <recent name="$PROJECT_DIR$/src/colorPalettes.ts" />
+      <recent name="$PROJECT_DIR$/src/listnavigator/ListItemCount.tsx" />
       <recent name="$PROJECT_DIR$/src/ContentPanelArea.tsx" />
       <recent name="$PROJECT_DIR$/src/Sidebar.tsx" />
-      <recent name="$PROJECT_DIR$/src/StickyHeader.tsx" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -85,7 +91,8 @@
       <workItem from="1718255053491" duration="810000" />
       <workItem from="1718255877574" duration="181000" />
       <workItem from="1718256196255" duration="71000" />
-      <workItem from="1718256381365" duration="44211000" />
+      <workItem from="1718256381365" duration="47475000" />
+      <workItem from="1718436750072" duration="8835000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <option name="closed" value="true" />
@@ -119,7 +126,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718342515237</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Update the proxy.">
+      <option name="closed" value="true" />
+      <created>1718409169232</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718409169232</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,6 +145,7 @@
     <MESSAGE value="Refinement of overall model for a generic data browser." />
     <MESSAGE value="Added communities.&#10;Added a header in the sidebar and an item count for lists.&#10;Reorganised file structure of application." />
     <MESSAGE value="Added an event callback for when a list comes to the foreground.&#10;Added a counter to show the number of items in the current list." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added an event callback for when a list comes to the foreground.&#10;Added a counter to show the number of items in the current list." />
+    <MESSAGE value="Update the proxy." />
+    <option name="LAST_COMMIT_MESSAGE" value="Update the proxy." />
   </component>
 </project>

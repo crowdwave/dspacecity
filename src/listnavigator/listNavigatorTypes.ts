@@ -4,11 +4,6 @@ export interface ListMetaDataItem {
     rowData?: unknown;
 }
 
-export interface ListItemProps {
-    listIndex: number;
-    listMetaDataItem: ListMetaDataItem;
-    color: string;
-}
 
 export interface SelectedItem {
     listIndex: number;
@@ -16,7 +11,7 @@ export interface SelectedItem {
 }
 
 export interface ListData {
-    color: string;
+    colorPalette: ColorPalette;
     index: number;
     listIdentifier: ListIdentifier;
     listMetaDataItem: ListMetaDataItem[];
@@ -28,3 +23,4 @@ export interface ListItemCountEvent extends CustomEvent {
 }
 
 export type ListIdentifier = string;
+export type ColorPalette = string[];
