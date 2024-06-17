@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7bf7135e-475e-481e-a187-391ff22ab468" name="Changes" comment="Tightened up creation of ListData.">
+    <list default="true" id="7bf7135e-475e-481e-a187-391ff22ab468" name="Changes" comment="Breaking out functions for better organisation.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Start.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Start.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/OnGetNextListCallback.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/OnGetNextListCallback.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/OnListDisplayedCallback.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/OnListDisplayedCallback.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/OnRowSelectCallback.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/OnRowSelectCallback.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/makeCollectionsList.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/makeCollectionsList.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/listnavigator/ListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/ListItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/listnavigator/listNavigatorTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/listnavigator/listNavigatorTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/App.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +89,7 @@
       <workItem from="1718255877574" duration="181000" />
       <workItem from="1718256196255" duration="71000" />
       <workItem from="1718256381365" duration="47475000" />
-      <workItem from="1718436750072" duration="11111000" />
+      <workItem from="1718436750072" duration="23661000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <option name="closed" value="true" />
@@ -134,7 +139,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718575043303</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Breaking out functions for better organisation.">
+      <option name="closed" value="true" />
+      <created>1718578323714</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718578323714</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +160,7 @@
     <MESSAGE value="Added an event callback for when a list comes to the foreground.&#10;Added a counter to show the number of items in the current list." />
     <MESSAGE value="Update the proxy." />
     <MESSAGE value="Tightened up creation of ListData." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tightened up creation of ListData." />
+    <MESSAGE value="Breaking out functions for better organisation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Breaking out functions for better organisation." />
   </component>
 </project>

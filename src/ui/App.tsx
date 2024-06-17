@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {Sidebar} from "./Sidebar";
 import {ContentPanelArea} from "./ContentPanelArea";
+import {SidebarStickyHeader} from "./SidebarStickyHeader";
+import {Start} from "./Start";
 
 export const App: React.FC = () => {
     const [selectedItemData, setSelectedItemData] = useState(null);
@@ -87,11 +89,29 @@ export const App: React.FC = () => {
                 <header className="App-header">
                     <h1>dSPACE city</h1>
                 </header>
-                <div className="App-body">
-                    <Sidebar sidebarWidth={sidebarWidth} handleMouseDown={handleMouseDown} />
-                    <ContentPanelArea selectedItemData={selectedItemData} />
-                </div>
+                {true ?
+                    <div style={{
+                        maxWidth: "600px",
+                        margin: "0 auto",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                    }}>
+                        <SidebarStickyHeader/>
+                        <Start/>
+                    </div>
+                    :
+                    <>
+                        <div className="App-body">
+                            <Sidebar
+                                sidebarWidth={sidebarWidth}
+                                handleMouseDown={handleMouseDown}/>
+                            <ContentPanelArea selectedItemData={selectedItemData}/>
+                        </div>
+                    </>
+                }
             </div>
         </>
-    );
+    )
+        ;
 };

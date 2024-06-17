@@ -39,6 +39,7 @@ export const ListItem: React.FC<ListItemProps> = ({
         const selectedItem: SelectedItem = {
             listMetaDataItem: listMetaDataItem,
             listIndex: listData.index,
+            listIdentifier: listData.listIdentifier,
         };
         const event: CustomEvent<SelectedItem> = new CustomEvent('LIST_ITEM_SELECTED', {detail: selectedItem} as CustomEventInit<SelectedItem>);
         document.dispatchEvent(event);

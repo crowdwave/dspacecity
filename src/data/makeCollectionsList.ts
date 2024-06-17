@@ -3,11 +3,11 @@ import {ListData, ListMetaDataItem} from "../listnavigator/listNavigatorTypes";
 import {makeList} from "./makeList";
 import {colorPalettes} from "../colorPalettes";
 
-interface Link {
+export interface Link {
   href: string;
 }
 
-interface MetadataItem {
+export interface MetadataItem {
   value: string;
   language: string | null;
   authority: string | null;
@@ -15,19 +15,19 @@ interface MetadataItem {
   place: number;
 }
 
-interface CollectionMetadata {
+export interface CollectionMetadata {
   "dc.identifier.uri"?: MetadataItem[];
   "dc.title"?: MetadataItem[];
   "dc.description"?: MetadataItem[];
   "dc.description.abstract"?: MetadataItem[];
 }
 
-interface WorkflowGroup {
+export interface WorkflowGroup {
   href: string;
   name: string;
 }
 
-interface CollectionLinks {
+export interface CollectionLinks {
   harvester: Link;
   itemtemplate: Link;
   license: Link;
@@ -42,7 +42,7 @@ interface CollectionLinks {
   workflowGroups: WorkflowGroup[];
 }
 
-interface Collection {
+export interface Collection {
   id: string;
   uuid: string;
   name: string;
@@ -53,11 +53,11 @@ interface Collection {
   _links: CollectionLinks;
 }
 
-interface EmbeddedCollections {
+export interface EmbeddedCollections {
   collections: Collection[];
 }
 
-interface CollectionsResponseLinks {
+export interface CollectionsResponseLinks {
   first: Link;
   self: Link;
   next: Link;
@@ -65,14 +65,14 @@ interface CollectionsResponseLinks {
   search: Link;
 }
 
-interface PageInfo {
+export interface PageInfo {
   size: number;
   totalElements: number;
   totalPages: number;
   number: number;
 }
 
-interface CollectionsResponse {
+export interface CollectionsResponse {
   _embedded: EmbeddedCollections;
   _links: CollectionsResponseLinks;
   page: PageInfo;

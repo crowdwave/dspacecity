@@ -2,6 +2,8 @@ import {ListData} from "../listnavigator/listNavigatorTypes";
 import {setListItemCount} from "../listnavigator/ListItemCount";
 
 export const onListDisplayedCallback = async (selectedList: ListData) => {
+    console.log('onListDisplayedCallback: ', selectedList)
+
     switch (selectedList.listIdentifier) {
         case 'rootlist':
             setListItemCount(null);

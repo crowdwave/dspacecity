@@ -8,6 +8,7 @@ export interface ListMetaDataItem {
 export interface SelectedItem {
     listIndex: number;
     listMetaDataItem: ListMetaDataItem;
+    listIdentifier: ListIdentifier;
 }
 
 export interface ListData {
